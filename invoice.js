@@ -55,6 +55,39 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("inv-total").innerText = grandTotal.toFixed(2);
 });
 
+// Shows ALL invoices (searching by trn)
+function ShowInvoices() {
+    let allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
+
+    console.log("ALL INVOICES:");
+    console.log(allInvoices);
+
+    let trn = prompt("Enter TRN to search invoices:");
+    if (trn) {
+        let result = allInvoices.filter(inv => inv.trn == trn);
+        console.log("SEARCH RESULTS FOR TRN " + trn + ":");
+        console.log(result);
+    }
+}
+
+
+// Shows invoices for logged in user
+function GetUserInvoices() {
+    let userData = JSON.parse(localStorage.getItem("RegisterData"));
+    let allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
+
+    if (!userData) {
+        console.log("No logged-in user found.");
+        return;
+    }
+
+    let userTRN = userData.trn;
+    let userInvoices = allInvoices.filter(inv => inv.trn == userTRN);
+
+    console.log("INVOICES FOR USER TRN " + userTRN + ":");
+    console.log(userInvoices);
+}
+
 
 
 
