@@ -22,7 +22,6 @@ loginForm.addEventListener('submit', function(event) {
         // Successful login redirect to product catalog
         window.location.href = "products.html";
     } else {
-        // If login fails
         loginAttempts++;
         errorMessage.textContent = `Invalid TRN or password. Attempt ${loginAttempts} of 3.`;
 
