@@ -20,13 +20,13 @@ registerForm.addEventListener('submit', function(event) {
     const trnPattern = /^\d{3}-\d{3}-\d{3}$/;
 
     if (!trnPattern.test(trn)) {
-        alert ( "TRN must be in the format 000-000-000 include hyphen.");
+        alert("TRN must be in the format 000-000-000 include hyphen.");
         return;
     }
 
     // Check if passwords match
     if (password !== confirmPassword) {
-        alert ("Passwords do not match.");
+        alert("Passwords do not match.");
         return;
     }
 
@@ -35,11 +35,8 @@ registerForm.addEventListener('submit', function(event) {
     const today = new Date();
     const age = today.getFullYear() - birthDate.getFullYear();
 
-    if (
-        age < 18 ||
-        (age === 18 && today < new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate()))
-    ) {
-        alert ("You must be at least 18 years old to register.");
+    if (age < 18 || (age === 18 && today < new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate()))) {
+        alert("You must be at least 18 years old to register.");
         return;
     }
 
@@ -50,7 +47,7 @@ registerForm.addEventListener('submit', function(event) {
     const trnExists = existingUsers.some(user => user.trn === trn);
 
     if (trnExists) {
-        alert ("This TRN is already registered.");
+        alert("This TRN is already registered.");
         return;
     }
 
@@ -75,7 +72,7 @@ registerForm.addEventListener('submit', function(event) {
 
     // Success message
     registerError.style.color = "green";
-    alert( "Registration successful! Redirecting to homepage within 3 seconds");
+    alert("Registration successful! Redirecting to homepage within 3 seconds");
 
     // Redirect to homepage
     setTimeout(() => {
@@ -83,11 +80,10 @@ registerForm.addEventListener('submit', function(event) {
     }, 3000);
 });
 
-
-    // Cancel button clears form
-    cancelButton.addEventListener('click', () => {
-        registerForm.reset();
-        registerError.textContent = "";
-        registerError.style.color = "red";
-    });
+// Cancel button clears form
+cancelButton.addEventListener('click', () => {
+    registerForm.reset();
+    registerError.textContent = "";
+    registerError.style.color = "red";
+});
 
