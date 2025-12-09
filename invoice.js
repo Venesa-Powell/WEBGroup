@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("inv-total").innerText = grandTotal.toFixed(2);
 });
 
-// Shows ALL invoices (searching by trn)
+// Shows ALL invoices (searching by TRN)
 function ShowInvoices() {
     let allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
 
@@ -70,10 +70,9 @@ function ShowInvoices() {
     }
 }
 
-
 // Shows invoices for logged in user
 function GetUserInvoices() {
-    let userData = JSON.parse(localStorage.getItem("RegisterData"));
+    let userData = JSON.parse(localStorage.getItem("currentUser"));
     let allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
 
     if (!userData) {
