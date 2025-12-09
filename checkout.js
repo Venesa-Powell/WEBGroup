@@ -1,8 +1,8 @@
-// --- Constants ---
+// Constants 
 const TAX_RATE = 0.15;
 const DISCOUNT_RATE = 0.10;
 
-// --- Load cart safely ---
+// Load cart 
 let cart = [];
 try {
     cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -11,14 +11,14 @@ try {
     cart = [];
 }
 
-// --- Load current user ---
+// Load current user
 const currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
 if (!currentUser) {
     alert("You must be logged in to checkout.");
     window.location.href = "login.html";
 }
 
-// --- Render cart summary ---
+// Render cart summary 
 function renderSummary() {
     const summaryItemsContainer = document.getElementById("summary-items");
     const totalAmountElement = document.getElementById("total-amount");
@@ -49,7 +49,7 @@ function renderSummary() {
     totalAmountElement.innerText = totalAmount.toFixed(2);
 }
 
-// --- Input validation ---
+//  Input validation 
 function validateField(id, message) {
     const input = document.getElementById(id);
     const shippingError = document.getElementById("shipping-error");
@@ -76,7 +76,7 @@ function validateField(id, message) {
     }
 });
 
-// --- Form submission: generate invoice ---
+//  Form submission
 const shippingForm = document.getElementById("shipping-form");
 if (shippingForm) {
     shippingForm.addEventListener("submit", (e) => {
@@ -118,7 +118,7 @@ if (shippingForm) {
             total: (totalAmount * (1 + TAX_RATE)).toFixed(2)
         };
 
-        // Save invoice to LatestInvoice for immediate display
+        // Save invoice to LatestInvoice
         localStorage.setItem("LatestInvoice", JSON.stringify(invoice));
 
         // Save invoice to AllInvoices array
@@ -134,7 +134,7 @@ if (shippingForm) {
     });
 }
 
-// --- Cancel button ---
+//  Cancel button 
 const cancelBtn = document.getElementById("cancel-btn");
 if (cancelBtn) {
     cancelBtn.addEventListener("click", () => {
@@ -143,7 +143,7 @@ if (cancelBtn) {
     });
 }
 
-// --- Initialize ---
+//  Initialize
 window.onload = renderSummary;
 
 
