@@ -2,6 +2,7 @@ const TAX_RATE = 0.15;
 const DISCOUNT_RATE = 0.10;
 
 document.addEventListener("DOMContentLoaded", () => {
+    
     const invoice = JSON.parse(localStorage.getItem("LatestInvoice"));
 
     if (!invoice || !Array.isArray(invoice.items) || invoice.items.length === 0) {
@@ -9,6 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "products.html";
         return;
     }
+    //add latest invoice to all invoices
+      let allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
+      allInvoices.push(invoice); 
+     localStorage.setItem("AllInvoices", JSON.stringify(allInvoices));
 
     // Fill invoice info
     document.getElementById("inv-number").innerText = invoice.invoiceNumber;
