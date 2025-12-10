@@ -98,7 +98,7 @@ td {
     margin-top: 30px;
 }
 
-button {
+button, .btn-nav {
     background-color: rgb(133, 201, 228);
     padding: 12px 20px;
     border: none;
@@ -110,7 +110,7 @@ button {
     transition: background 0.3s ease, transform 0.3s ease;
 }
 
-button:hover {
+button, .btn-nav:hover {
     background: linear-gradient(skyblue, rgb(75, 75, 240));
     box-shadow: 0 5px 15px rgba(42, 9, 229, 0.5);
     transform: translateY(-3px);
