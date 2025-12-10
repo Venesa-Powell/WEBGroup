@@ -10,11 +10,19 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "products.html";
         return;
     }
-    //add latest invoice to all invoices
-      let allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
-      allInvoices.push(invoice); 
-     localStorage.setItem("AllInvoices", JSON.stringify(allInvoices));
 
+    // CAPTURE THE FINAL INVOICE HTML
+    let invoiceHTML = document.getElementById("invoice-container").outerHTML;
+
+    // Add the HTML to the invoice object
+    invoice.htmlContent = invoiceHTML;
+    
+    // Save to AllInvoices
+    let allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
+    allInvoices.push(invoice);
+    localStorage.setItem("AllInvoices", JSON.stringify(allInvoices));
+
+   
     // Fill invoice info
     document.getElementById("inv-number").innerText = invoice.invoiceNumber;
     document.getElementById("inv-date").innerText = invoice.date;
