@@ -112,7 +112,7 @@ function showUserInvoices() {
     }
 
     const allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
-    const userInvoices = allInvoices.filter(inv => inv.trn === user.trn);
+    const userInvoices = allInvoices.filter(inv => inv.trn ||"".trim() === user.trn ||"").trim());
 
     if (userInvoices.length === 0) {
         container.innerHTML = "<p>No invoices found for this user.</p>";
