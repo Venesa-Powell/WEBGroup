@@ -103,29 +103,26 @@ document.addEventListener("DOMContentLoaded", ShowUserFrequency);
 // Function to display invoices using the saved HTML from localStorage
 function showUserInvoices() {
     const container = document.getElementById("user-invoices-container");
-    container.innerHTML = ""; 
+    container.innerHTML = ""; // Clear previous invoices
 
-    const userData = JSON.parse(localStorage.getItem("currentUser"));
-    if (!userData) {
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+    if (!user) {
         container.innerHTML = "<p>No logged-in user found.</p>";
         return;
     }
 
     const allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
-    const userInvoices = allInvoices.filter(inv => inv.trn === userData.trn);
+    const userInvoices = allInvoices.filter(inv => inv.trn === user.trn);
 
     if (userInvoices.length === 0) {
-        container.innerHTML = "<p>No invoices found for your account.</p>";
+        container.innerHTML = "<p>No invoices found for this user.</p>";
         return;
     }
 
+    // Append each invoice HTML safely
     userInvoices.forEach(inv => {
-        const tempDiv = document.createElement("div");
-        tempDiv.innerHTML = inv.htmlContent.trim(); // remove whitespace
-
-        if (tempDiv.children.length > 0) {
-            container.appendChild(tempDiv.children[0]); // FIX HERE
-        }
+        container.insertAdjacentHTML("beforeend", inv.htmlContent);
     });
 }
+
 
