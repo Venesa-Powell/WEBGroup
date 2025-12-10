@@ -96,58 +96,6 @@ function ShowUserFrequency() {
             rgb(240, 180, 75) ${age4Deg}deg
         )`;
 
-    // Log frequency data to console
-    console.log("=== User Frequency Report ==="); 
-    console.log("Total Registered Users: " + users.length);
-    console.log("");
-    console.log("Gender Distribution:");
-    console.log("  Male: " + male);
-    console.log("  Female: " + female);
-    console.log("");
-    console.log("Age Group Distribution:");
-    console.log("  18-25: " + age18_25);
-    console.log("  26-35: " + age26_35);
-    console.log("  36-50: " + age36_50);
-    console.log("  50+: " + age50plus);
-    console.log("=============================");
-
-    function clearInvoices() {
-    document.getElementById("invoices-container").innerHTML = "";
-    document.getElementById("trn-input").value = "";
 }
-
-// Show all invoices
-function showAllInvoices() {
-    const allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
-    displayInvoices(allInvoices);
-}
-
-// Search invoices by TRN
-function searchInvoices() {
-    const trn = document.getElementById("trn-input").value.trim();
-    if (!trn) {
-        alert("Please enter a TRN.");
-        return;
-    }
-    const allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
-    const filtered = allInvoices.filter(inv => inv.trn === trn);
-    displayInvoices(filtered);
-}
-
-// Display invoices previously generated
-function displayInvoices(invoices) {
-    const container = document.getElementById("invoices-container");
-    container.innerHTML = "";
-    if (!invoices.length) {
-        container.innerHTML = "<p>No invoices found.</p>";
-        return;
-    }
-    invoices.forEach(inv => {
-        const tempDiv = document.createElement("div");
-        tempDiv.innerHTML = inv.htmlContent; // Use the saved invoice HTML
-        container.appendChild(tempDiv.firstElementChild);
-    });
-}
-
 // RUN IT WHEN PAGE LOADS
 document.addEventListener("DOMContentLoaded", ShowUserFrequency);
