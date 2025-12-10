@@ -11,17 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // CAPTURE THE FINAL INVOICE HTML
-    let invoiceHTML = document.getElementById("invoice-container").outerHTML;
-
-    // Add the HTML to the invoice object
-    invoice.htmlContent = invoiceHTML;
-    
-    // Save to AllInvoices
-    let allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
-    allInvoices.push(invoice);
-    localStorage.setItem("AllInvoices", JSON.stringify(allInvoices));
-
    
     // Fill invoice info
     document.getElementById("inv-number").innerText = invoice.invoiceNumber;
@@ -66,6 +55,15 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("inv-subtotal").innerText = subtotal.toFixed(2);
     document.getElementById("inv-tax").innerText = taxTotal.toFixed(2);
     document.getElementById("inv-total").innerText = grandTotal.toFixed(2);
+
+
+    let invoiceHTML = document.getElementById("invoice-container").outerHTML;
+    invoice.htmlContent = invoiceHTML;
+
+    // Save updated invoice to AllInvoices
+    let allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
+    allInvoices.push(invoice);
+    localStorage.setItem("AllInvoices", JSON.stringify(allInvoices));
 });
 
 // Shows ALL invoices (searching by TRN)
