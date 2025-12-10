@@ -45,12 +45,17 @@ nav a:hover {
       background-color: skyblue;
     }
 
+.checkout-section {
+    width: 100%;               /* full width */
+    background-color: rgb(215, 240, 75); /* yellow background */
+    padding: 20px 0;           /* optional spacing */
+}
+
 #checkout-container {
-    width: 90%; /* instead of max-width */
-    max-width: 900px;
-    margin: 60px auto;
+    max-width: 900px;          /* table width */
+    margin: 0 auto;            /* center the table */
+    background-color: inherit; /* match section's color */
     padding: 50px;
-    background-color: rgb(215, 240, 75);
     border-radius: 10px;
     box-shadow: 0 8px 8px rgba(8, 43, 95, 0.5);
 }
