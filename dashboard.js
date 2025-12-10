@@ -110,6 +110,44 @@ function ShowUserFrequency() {
     console.log("  36-50: " + age36_50);
     console.log("  50+: " + age50plus);
     console.log("=============================");
+
+    function clearInvoices() {
+    document.getElementById("invoices-container").innerHTML = "";
+    document.getElementById("trn-input").value = "";
 }
+
+// Show all invoices
+function showAllInvoices() {
+    const allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
+    displayInvoices(allInvoices);
+}
+
+// Search invoices by TRN
+function searchInvoices() {
+    const trn = document.getElementById("trn-input").value.trim();
+    if (!trn) {
+        alert("Please enter a TRN.");
+        return;
+    }
+    const allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
+    const filtered = allInvoices.filter(inv => inv.trn === trn);
+    displayInvoices(filtered);
+}
+
+// Display invoices previously generated
+function displayInvoices(invoices) {
+    const container = document.getElementById("invoices-container");
+    container.innerHTML = "";
+    if (!invoices.length) {
+        container.innerHTML = "<p>No invoices found.</p>";
+        return;
+    }
+    invoices.forEach(inv => {
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = inv.htmlContent; // Use the saved invoice HTML
+        container.appendChild(tempDiv.firstElementChild);
+    });
+}
+
 // RUN IT WHEN PAGE LOADS
 document.addEventListener("DOMContentLoaded", ShowUserFrequency);
